@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SG-Cinema</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="filmes.html">Filmes</a></li>
+            <li><a href="sessoes.html">Sessões</a></li>
+            <li><a href="salas.html">Salas</a></li>
+            <li><a href="ingressos.html">Ingressos</a></li>
+            <li><a href="clientes.html">Cliente</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>Filme</h1>
+        <form id="filmeForm">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" placeholder="nome filme (alt+t)" required>
+
+            <label for="classificacao">Classificação:</label>
+            <select id="classificacao" name="classificacao">
+                <option value="Livre">Livre</option>
+                <option value="10">10 anos</option>
+                <option value="12">12 anos</option>
+                <option value="14">14 anos</option>
+                <option value="16">16 anos</option>
+                <option value="18">18 anos</option>
+            </select>
+
+            <label for="genero">Gênero:</label>
+            <select id="genero" name="genero">
+                <option value="acao">Ação</option>
+                <option value="drama">Drama</option>
+                <option value="comedia">Comédia</option>
+                <option value="terror">Terror</option>
+                <option value="animacao">Animação</option>
+            </select>
+
+            <label for="resumo">Resumo:</label>
+            <textarea id="resumo" name="resumo" placeholder="Escreva um breve resumo do filme..."></textarea>
+
+            <label for="duracao">Duração (minutos):</label>
+            <input type="number" id="duracao" name="duracao" min="0" required>
+
+            <button type="submit">Salvar Filme</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
