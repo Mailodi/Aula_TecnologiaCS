@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SG-Cinema - Ingressos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="filmes.html">Filmes</a></li>
+            <li><a href="sessoes.html">Sessões</a></li>
+            <li><a href="salas.html">Salas</a></li>
+            <li><a href="ingressos.html">Ingressos</a></li>
+            <li><a href="clientes.html">Cliente</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>Compra de Ingressos</h1>
+        <form id="ingressoForm">
+            <label for="sessao">Sessão:</label>
+            <select id="sessao" name="sessao" required></select>
+
+            <label for="tipoIngresso">Tipo de Ingresso:</label>
+            <select id="tipoIngresso" name="tipoIngresso" required>
+                <option value="inteiro">Inteiro</option>
+                <option value="meio">Meio Ingresso</option>
+            </select>
+
+            <button type="submit">Comprar Ingresso</button>
+        </form>
+
+        <h2>Ingressos Comprados</h2>
+        <ul id="listaIngressos"></ul>
+    </div>
+
+    <script src="script-ingressos.js"></script>
+</body>
+</html>
