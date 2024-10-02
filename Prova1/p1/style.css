@@ -1,0 +1,69 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    background: url('puc-goias-vertical.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.15; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Centralizar o formulário de login e modal */
+.d-flex {
+    height: 100%;
+    width: 100%;
+}
+
+/* Estilo adicional para botões e elementos do formulário */
+.btn-primary {
+    background-color: #5b86e5;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary:hover {
+    background-color: #476de5;
+}
+
+.btn-secondary {
+    background-color: #f5a623;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-secondary:hover {
+    background-color: #f39c12;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+#registerErrorMessage, #errorMessage {
+    font-size: 14px;
+}

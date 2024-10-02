@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SG-Cinema - Sessões</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="filmes.html">Filmes</a></li>
+            <li><a href="sessoes.html">Sessões</a></li>
+            <li><a href="salas.html">Salas</a></li>
+            <li><a href="ingressos.html">Ingressos</a></li>
+            <li><a href="clientes.html">Cliente</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>Cadastro de Sessões</h1>
+        <form id="sessaoForm">
+            <label for="filme">Filme:</label>
+            <select id="filme" name="filme" required></select>
+
+            <label for="sala">Sala:</label>
+            <select id="sala" name="sala" required></select>
+
+            <label for="horario">Horário:</label>
+            <input type="datetime-local" id="horario" name="horario" required>
+
+            <button type="submit">Salvar Sessão</button>
+        </form>
+
+        <h2>Lista de Sessões</h2>
+        <ul id="listaSessoes"></ul>
+    </div>
+
+    <script src="script-sessoes.js"></script>
+</body>
+</html>
