@@ -47,7 +47,7 @@ class Auth {
 
     async sendZabbixAlert(userName, userEmail) {
         try {
-            const response = await fetch('http://172.27.77.140/zabbix/api_jsonrpc.php', {
+            const response = await fetch('http://ippppppppppp/zabbix/api_jsonrpc.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,14 +56,14 @@ class Auth {
                     "jsonrpc": "2.0",
                     "method": "item.create",
                     "params": {
-                        "hostid": "172.27.77.140", // substitua pelo ID do host no Zabbix
+                        "hostid": "", // substitua pelo ID do host no Zabbix
                         "key_": "login.attempt",
                         "type": 2,  // Tipo Trapper
                         "value_type": 1,  // Tipo numérico (ou text se preferir)
                         "history": "7d",
                         "name": `Login attempt by ${userName} (${userEmail})`
                     },
-                    "auth": "1a81cf860a78ba05a515a20a1402cb0e3600a712339ac00096707da7e81e8c31", // substitua pelo token de autenticação do Zabbix
+                    "auth": "", // substitua pelo token de autenticação do Zabbix
                     "id": 1
                 })
             });
