@@ -1,11 +1,3 @@
-class User {
-    constructor(name, email, password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-}
-
 class Auth {
     constructor() {
         this.users = [];
@@ -21,10 +13,11 @@ class Auth {
         return true;
     }
 
-    loginUser(email, password) {
+    async loginUser(email, password) {
         const user = this.users.find(user => user.email === email && user.password === password);
         if (user) {
             this.limpar_form_login();
+            this.sendZabbixAlert(user.name, user.email); // Chama a função para enviar alerta
             window.location.href = '/Cinema/index.html';
         } else {
             this.showError("Email ou senha inválidos.");
@@ -51,43 +44,34 @@ class Auth {
         document.getElementById("registerForm").reset();
         document.getElementById("registerErrorMessage").innerText = "";
     }
+
+    async sendZabbixAlert(userName, userEmail) {
+        try {
+            const response = await fetch('http://172.27.77.140/zabbix/api_jsonrpc.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "jsonrpc": "2.0",
+                    "method": "item.create",
+                    "params": {
+                        "hostid": "172.27.77.140", // substitua pelo ID do host no Zabbix
+                        "key_": "login.attempt",
+                        "type": 2,  // Tipo Trapper
+                        "value_type": 1,  // Tipo numérico (ou text se preferir)
+                        "history": "7d",
+                        "name": `Login attempt by ${userName} (${userEmail})`
+                    },
+                    "auth": "1a81cf860a78ba05a515a20a1402cb0e3600a712339ac00096707da7e81e8c31", // substitua pelo token de autenticação do Zabbix
+                    "id": 1
+                })
+            });
+
+            const data = await response.json();
+            console.log("Login alert sent to Zabbix:", data);
+        } catch (error) {
+            console.error("Error sending alert to Zabbix:", error);
+        }
+    }
 }
-
-const auth = new Auth();
-
-// login formulario
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    auth.loginUser(email, password);
-});
-
-// Register Form
-document.getElementById("registerForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const name = document.getElementById("registerName").value;
-    const email = document.getElementById("registerEmail").value;
-    const password = document.getElementById("registerPassword").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-
-    if (!auth.validatePassword(password, confirmPassword)) {
-        document.getElementById("registerErrorMessage").innerText = "Senhas não coincidem.";
-        return;
-    }
-
-    const success = auth.registerUser(name, email, password);
-    if (success) {
-        auth.limpar_formulario_regis();
-        $('#registerModal').modal('hide');
-    }
-});
-
-//Limpar formularios
-$('#registerModal').on('hidden.bs.modal', function () {
-    auth.limpar_formulario_regis();
-});
-
-window.addEventListener('beforeunload', function() {
-    auth.limpar_form_login();
-});
